@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1>To-Do List</h1>
+    <h1>タスク一覧</h1>
     <to-do-form @todo-added="addToDo"></to-do-form>
     <h2 id="list-summary" ref="listSummary" tabindex="-1">{{ listSummary }}</h2>
     <ul aria-labelledby="list-summary" class="stack-large">
@@ -32,14 +32,14 @@ export default {
   data() {
     return {
       ToDoItems: [
-        { id: uniqueId("todo-"), label: "Learn Vue", done: false },
+        { id: uniqueId("todo-"), label: "掃除する", done: false },
         {
           id: uniqueId("todo-"),
-          label: "Create a Vue project with the CLI",
+          label: "洗濯",
           done: true,
         },
-        { id: uniqueId("todo-"), label: "Have fun", done: true },
-        { id: uniqueId("todo-"), label: "Create a to-do list", done: false },
+        { id: uniqueId("todo-"), label: "食器洗い", done: true },
+        { id: uniqueId("todo-"), label: "ゴミ捨て", done: false },
       ],
     };
   },
@@ -70,7 +70,7 @@ export default {
       const numberFinishedItems = this.ToDoItems.filter(
         (item) => item.done
       ).length;
-      return `${numberFinishedItems} out of ${this.ToDoItems.length} items completed`;
+      return `${this.ToDoItems.length}件中${numberFinishedItems}のタスクが完了しました`;
     },
   },
 };

@@ -15,11 +15,11 @@
         class="btn"
         ref="editButton"
         @click="toggleToItemEditForm">
-        Edit
+        編集
         <span class="visually-hidden">{{ label }}</span>
       </button>
       <button type="button" class="btn btn__danger" @click="deleteToDo">
-        Delete
+        削除
         <span class="visually-hidden">{{ label }}</span>
       </button>
     </div>
