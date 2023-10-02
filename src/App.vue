@@ -45,7 +45,7 @@ export default {
   },
   methods: {
     addToDo(toDoLabel) {
-      this.ToDoItems.push({
+      this.ToDoItems.unshift({
         id: uniqueId("todo-"),
         label: toDoLabel,
         done: false,
