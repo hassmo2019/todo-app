@@ -1,54 +1,22 @@
 <template>
   <form class="stack-small" @submit.prevent="onSubmit">
     <div>
-      <label class="edit-label">&quot;{{ label }}&quot;の名前を編集</label>
-      <input
-        :id="id"
-        ref="labelInput"
-        type="text"
-        autocomplete="off"
-        v-model.lazy.trim="newLabel" />
+      <label class="edit-label">&quot;{{ "label" }}&quot;の名前を編集</label>
+      <input :id="id" ref="labelInput" type="text" autocomplete="off" />
     </div>
     <div class="btn-group">
-      <button type="button" class="btn" @click="onCancel">
-        キャンセル
-      </button>
-      <button type="submit" class="btn btn__primary">
-        保存
-      </button>
+      <button type="button" class="btn">キャンセル</button>
+      <button type="submit" class="btn btn__primary">保存</button>
     </div>
   </form>
 </template>
 <script>
 export default {
   props: {
-    label: {
-      type: String,
-      required: true,
-    },
     id: {
       type: String,
       required: true,
     },
-  },
-  data() {
-    return {
-      newLabel: this.label,
-    };
-  },
-  methods: {
-    onSubmit() {
-      if (this.newLabel && this.newLabel !== this.label) {
-        this.$emit("item-edited", this.newLabel);
-      }
-    },
-    onCancel() {
-      this.$emit("edit-cancelled");
-    },
-  },
-  mounted() {
-    const labelInputRef = this.$refs.labelInput;
-    labelInputRef.focus();
   },
 };
 </script>

@@ -1,76 +1,43 @@
 <template>
   <div id="app">
     <h1>タスク一覧</h1>
-    <to-do-form @todo-added="addToDo"></to-do-form>
+    <!-- <to-do-form></to-do-form> -->
     <h2 id="list-summary" ref="listSummary" tabindex="-1">{{ listSummary }}</h2>
     <ul aria-labelledby="list-summary" class="stack-large">
-      <li v-for="item in ToDoItems" :key="item.id">
-        <to-do-item
-          :label="item.label"
-          :done="item.done"
-          :id="item.id"
-          @checkbox-changed="updateDoneStatus(item.id)"
-          @item-deleted="deleteToDo(item.id)"
-          @item-edited="editToDo(item.id, $event)">
-        </to-do-item>
+      <li>
+        <!-- <to-do-item></to-do-item> -->
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-import ToDoItem from "./components/ToDoItem.vue";
-import ToDoForm from "./components/ToDoForm.vue";
-import uniqueId from "lodash.uniqueid";
+// import uniqueId from "lodash.uniqueid";
 
 export default {
   name: "app",
-  components: {
-    ToDoItem,
-    ToDoForm,
-  },
   data() {
     return {
-      ToDoItems: [
-        { id: uniqueId("todo-"), label: "掃除する", done: false },
-        {
-          id: uniqueId("todo-"),
-          label: "洗濯",
-          done: true,
-        },
-        { id: uniqueId("todo-"), label: "食器洗い", done: true },
-        { id: uniqueId("todo-"), label: "ゴミ捨て", done: false },
-      ],
+      ToDoItems: [], // 例: { id: uniqueId("todo-"), label: "掃除する", done: false }
     };
   },
   methods: {
-    addToDo(toDoLabel) {
-      this.ToDoItems.unshift({
-        id: uniqueId("todo-"),
-        label: toDoLabel,
-        done: false,
-      });
+    addToDo() {
+      // タスク追加
     },
-    updateDoneStatus(toDoId) {
-      const toDoToUpdate = this.ToDoItems.find((item) => item.id === toDoId);
-      toDoToUpdate.done = !toDoToUpdate.done;
+    updateDoneStatus() {
+      // タスク状況更新
     },
-    deleteToDo(toDoId) {
-      const itemIndex = this.ToDoItems.findIndex((item) => item.id === toDoId);
-      this.ToDoItems.splice(itemIndex, 1);
-      this.$refs.listSummary.focus();
+    deleteToDo() {
+      // タスク削除
     },
-    editToDo(toDoId, newLabel) {
-      const toDoToEdit = this.ToDoItems.find((item) => item.id === toDoId);
-      toDoToEdit.label = newLabel;
+    editToDo() {
+      // タスク編集
     },
   },
   computed: {
     listSummary() {
-      const numberFinishedItems = this.ToDoItems.filter(
-        (item) => item.done
-      ).length;
-      return `${this.ToDoItems.length}件中${numberFinishedItems}のタスクが完了しました`;
+      return `1件中0件のタスクが完了しました`;
     },
   },
 };

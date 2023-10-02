@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="onSubmit">
+  <form>
     <h2 class="label-wrapper">
       <label for="new-todo-input" class="label__lg">
         タスクを入力してください
@@ -10,7 +10,6 @@
       id="new-todo-input"
       name="new-todo"
       autocomplete="off"
-      v-model.lazy.trim="label"
       class="input__lg" />
     <button type="submit" class="btn btn__primary btn__lg">追加する</button>
   </form>
@@ -19,18 +18,7 @@
 <script>
 export default {
   methods: {
-    onSubmit() {
-      if (this.label === "") {
-        return;
-      }
-      this.$emit("todo-added", this.label);
-      this.label = "";
-    },
-  },
-  data() {
-    return {
-      label: "",
-    };
+    onSubmit() {}, // タスクの追加
   },
 };
 </script>
